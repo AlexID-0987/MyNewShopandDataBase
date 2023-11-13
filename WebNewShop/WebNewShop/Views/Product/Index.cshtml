@@ -1,13 +1,30 @@
-﻿@model IEnumerable<Product>
+﻿@model IEnumerable<WebNewShop.Models.Product>
+
 @{
     ViewData["Title"] = "Index";
 }
 
 <h2>Index</h2>
-
+<div class="f">
 @foreach (var s in Model)
 {
-    <div>
-        <h1>@s.NameProduct;@s.Price.ToString("c");@s.Category</h1>
+    
+    <div class="cart">
+        <div class="onecart">
+            <div>@s.NameProduct</div>
+            <div>@s.Price.ToString("c")</div>
+            <div>@s.Category</div>
+        </div>
+        
     </div>
+    
+}
+</div>
+@if (ViewBag.Page.Increment)
+{
+    <a asp-action="Index" asp-route-page="@(ViewBag.Page.PageNumber-1)" class="btn btn-success">Decrement</a>
+}
+@if (ViewBag.Page.Decrement)
+{
+    <a asp-action="Index" asp-route-page="@(ViewBag.Page.PageNumber+1)" class="btn btn-success">Increment</a>
 }

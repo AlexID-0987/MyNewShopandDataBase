@@ -36,6 +36,13 @@ namespace WebNewShop
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {
+                
+                routes.MapRoute(
+                name: "Pagination",
+                template: "Products/Page{page}",
+                defaults: new { Controller = "Product", action = "Index" }
+                );
+
                 routes.MapRoute(
                     name: "Default",
                     template: "{controller=Product}/{action=Index}/{id?}"

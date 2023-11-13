@@ -1,0 +1,24 @@
+﻿@model IEnumerable<WebNewShop.Models.Product>
+@{
+    ViewData["Title"] = "ChoiseProduct";
+}
+
+<h2>ChoiseProduct</h2>
+
+<div class="d-flex flex-wrap" style="width:1000px;">
+    @foreach (var s in Model)
+    {
+
+        <div class="twocart" style="height:400px;width:300px;background-color:antiquewhite;border:3px black solid;margin:5px;">
+            <div class="secondcart" style="text-align:center;">
+                <div>@s.NameProduct</div>
+                <div>@s.Price.ToString("c")</div>
+                <div>@s.Category</div>
+            </div>
+
+        </div>
+
+    }
+</div>
+
+

@@ -22,37 +22,37 @@ namespace WebNewShop.Models
                     {
                        NameProduct="Lavender sashe",
                        Price=65758,
-                       Category="Present"
+                       Category="Party"
                     },
                     new Product
                     {
                         NameProduct = "Lavender flowers",
                         Price = 64658,
-                        Category = "Present"
+                        Category = "Party"
                     },
                     new Product
                     {
                         NameProduct = "Lavender tea",
                         Price = 64558,
-                        Category = "Present"
+                        Category = "Women"
                     },
                     new Product
                     {
                         NameProduct = "Lavender water",
                         Price = 98758,
-                        Category = "Present"
+                        Category = "Women"
                     },
                     new Product
                     {
                         NameProduct = "Lavender air",
                         Price = 78686858,
-                        Category = "Present"
+                        Category = "Women"
                     },
                     new Product
                     {
                         NameProduct = "Lavender tree",
                         Price = 68,
-                        Category = "Present"
+                        Category = "Women"
                     }
                     );
                 applicationsDb.SaveChanges();
