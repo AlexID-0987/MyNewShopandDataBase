@@ -5,7 +5,7 @@
 }
 
 <h2>Index</h2>
-<div class="f">
+<div class="d-flex">
 @foreach (var s in Model)
 {
     
@@ -14,6 +14,14 @@
             <div>@s.NameProduct</div>
             <div>@s.Price.ToString("c")</div>
             <div>@s.Category</div>
+            <div>
+                <form asp-controller="Cart"  method="post" asp-action="AddToCart">
+                    <div>
+                      <input type="hidden" value="@s.ProductId" name="productId"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </form>
+            </div>
         </div>
         
     </div>

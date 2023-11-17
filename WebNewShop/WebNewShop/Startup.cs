@@ -25,6 +25,8 @@ namespace WebNewShop
             services.AddDbContext<ApplicationsDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,6 +36,7 @@ namespace WebNewShop
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 
@@ -42,7 +45,7 @@ namespace WebNewShop
                 template: "Products/Page{page}",
                 defaults: new { Controller = "Product", action = "Index" }
                 );
-
+                
                 routes.MapRoute(
                     name: "Default",
                     template: "{controller=Product}/{action=Index}/{id?}"
