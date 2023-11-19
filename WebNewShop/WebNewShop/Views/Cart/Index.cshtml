@@ -14,24 +14,31 @@
                 <th>Category</th>
                 <th>Quantity</th>
                 <th>Summa</th>
+                <td>Remove</td>
             </tr>
         </thead>
         <tbody>
             @foreach (var products in Model.Cart.Lines)
             {
-            <tr>
-                <td>@products.Product.ProductId</td>
-                <td>@products.Product.NameProduct</td>
-                <td>@products.Product.Price.ToString("c")</td>
-                <td>@products.Product.Category</td>
-                <td>@products.Quantity</td>
-                <td>@((products.Quantity*products.Product.ConvertToDecimal()).ToString("c"))</td>
-            </tr>
+                <tr>
+                    <td>@products.Product.ProductId</td>
+                    <td>@products.Product.NameProduct</td>
+                    <td>@products.Product.Price.ToString("c")</td>
+                    <td>@products.Product.Category</td>
+                    <td>@products.Quantity</td>
+                    <td>@((products.Quantity * products.Product.ConvertToDecimal()).ToString("c"))</td>
+                    <td>
+                        <form asp-action="RemoveCart" method="post">
+                            <input type="hidden" name="product" value="@products.Product.ProductId"/>
+                            <button type="submit" class="btn btn-danger">Remove product</button>
+                        </form>
+                    </td>
+                </tr>
             }
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="5">Total:</td>
+                <td colspan="6">Total:</td>
                 <td class="text-right">@Model.Cart.TotalValue().ToString("c")</td>
             </tr>
         </tfoot>

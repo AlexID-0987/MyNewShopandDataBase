@@ -22,6 +22,8 @@ namespace WebNewShop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IProductRepository, EFProductRepository>();
+            services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDbContext<ApplicationsDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();

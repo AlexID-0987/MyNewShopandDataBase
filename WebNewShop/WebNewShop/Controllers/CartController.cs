@@ -12,9 +12,11 @@ namespace WebNewShop.Controllers
     {
         private IProductRepository repository;
         public CartSession cartSession;
-        public CartController(IProductRepository repository1)
+        private Cart cart;
+        public CartController(IProductRepository repository1, Cart servicecart)
         {
             repository = repository1;
+            cart = servicecart;
         }
         
         
@@ -24,31 +26,34 @@ namespace WebNewShop.Controllers
             Product onecart = repository.Products.FirstOrDefault(p => p.ProductId == productId);
             if (onecart!=null)
             {
-                Cart cart = GetCart();
+                
                 cart.AddItem(onecart, 1);
-                SaveCart(cart);
+                
             }
             
             return RedirectToAction("Index");
         }
-        
+        public RedirectToActionResult RemoveCart(int product)
+        {
+            Product onecart = repository.Products.FirstOrDefault(p => p.ProductId == product);
+            if (onecart != null)
+            {
+
+                cart.RemoveLine(onecart);
+
+            }
+
+            return RedirectToAction("Index");
+        }
+         
         public IActionResult Index()
         {
             return View(new CartSession
             {
-                Cart = GetCart()
+                Cart = cart
             });
             
         }
-        private Cart GetCart()
-        {
-            Cart sessioncart = HttpContext.Session.GetJson<Cart>("Cart") ?? new Cart();
-            
-            return sessioncart;
-        }
-        private void SaveCart(Cart cart)
-        {
-            HttpContext.Session.SetJson("Cart", cart);
-        }
+        
     }
 }
