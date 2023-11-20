@@ -30,9 +30,9 @@
 </div>
 @if (ViewBag.Page.Increment)
 {
-    <a asp-action="Index" asp-route-page="@(ViewBag.Page.PageNumber-1)" class="btn btn-success">Decrement</a>
+    <a asp-action="Index" asp-route-page="@(ViewBag.Page.PageNumber-1)" class="btn btn-success"><i class="fa-solid fa-minus fa-flip"></i>Decrement</a>
 }
 @if (ViewBag.Page.Decrement)
 {
-    <a asp-action="Index" asp-route-page="@(ViewBag.Page.PageNumber+1)" class="btn btn-success">Increment</a>
+    <a asp-action="Index" asp-route-page="@(ViewBag.Page.PageNumber+1)" class="btn btn-success"><i class="fa-solid fa-plus fa-flip"></i>Increment</a>
 }

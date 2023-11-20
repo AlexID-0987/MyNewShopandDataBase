@@ -45,16 +45,7 @@ namespace WebNewShop.Controllers
             var count = item.Count();
             int size = 2;
             var pagination1 = item.Where(p =>p.Category == categ).OrderBy(p => p.ProductId).ToList();
-            PagingInfo pagingInfo = new PagingInfo(count, page, size);
-            ProductListViewModel productListViewModel = new ProductListViewModel
-            {
-                PagingInfo = pagingInfo,
-                Products = pagination1,
-                CurrentCategory = categ
-            };
-            ViewBag.Count = count;
-            ViewBag.Page = pagingInfo;
-            ViewBag.PageNumber = page;
+            
             return View(pagination1);
         }
         
