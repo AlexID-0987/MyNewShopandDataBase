@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewBag.Title = "All Products";
+    Layout = "_AdminLayout";
+}
+
+<h2 class="text-center">All Products</h2>
+
+<div class="container">
+    <table class="table table-success table-striped">
+        <thead>
+            <tr>
+                <th>Id : <i class="fa-solid fa-fingerprint"></i></th>
+                <th>ProductName : <i class="fa-solid fa-cart-shopping fa-fade" style="color: #1f2251;"></i></th>
+                <th>Price : <i class="fa-solid fa-coins fa-bounce" style="color: #ed0707;"></i></th>
+                <th>Actions : <i class="fa-solid fa-person-circle-exclamation" style="color: #0860f7;"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.ProductId</td>
+                    <td>@product.NameProduct</td>
+                    <td>@product.Price.ToString("c")</td>
+                    <td>
+                        <form asp-action="Delete" method="post">
+                            <a asp-action="Edit" class="btn btn-warning"    asp-route-productId="@product.ProductId"><i class="fa-solid fa-pen-to-square" style="color: #0518a8;"></i></a>
+                            <input type="hidden" name="ProductId" value="@product.ProductId" />
+                            <button type="submit" class="btn btn-warning btn-danger btn-sm"><i class="fa-solid fa-trash fa-2xl"></i></button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="text-center">
+        <a asp-action="Create" class="btn btn-primary"><i class="fa-solid fa-plus fa-2xl"></i></a>
+    </div>
+</div>

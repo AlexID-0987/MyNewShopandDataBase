@@ -7,10 +7,20 @@
     <link href="~/css/StyleSheet.css" rel="stylesheet" />
     <link href="~/font-awesome/css/all.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
+    <style>
+        .input-validation-error{border-color:red;}
+    </style>
 </head>
 <body>
     <div>
-        @RenderBody()
+        <h1 class="text-center" style="color:red;">Admin List <i class="fa-solid fa-lock" style="color: #ee3211;"></i></h1>
     </div>
+    <div>
+        @if(TempData["message"]!=null)
+        {
+            <div class="alert alert-success">@TempData["message"]</div>
+        }
+        @RenderBody()
+     </div>
 </body>
 </html>

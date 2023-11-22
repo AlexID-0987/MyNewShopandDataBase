@@ -8,5 +8,7 @@ namespace WebNewShop.Models.Interface
     public interface IProductRepository
     {
         IQueryable<Product> Products {get;}
+        void SaveProduct(Product product);
+        Product Delete(int productId);
     }
 }
