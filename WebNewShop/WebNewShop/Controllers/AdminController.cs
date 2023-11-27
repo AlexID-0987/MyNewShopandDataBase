@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebNewShop.Models;
 using WebNewShop.Models.Interface;
 
 namespace WebNewShop.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private IProductRepository product;

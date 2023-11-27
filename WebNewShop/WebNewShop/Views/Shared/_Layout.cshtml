@@ -24,7 +24,9 @@
                         <a class="nav-link" href="#">Pricing</a>
                         <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                     </div>
+
                 </div>
+                
                 <div>
                     @await Component.InvokeAsync("CartSummary")
                 </div>
@@ -36,17 +38,17 @@
     <body>
         <div class="TwoPanels">
             <div class="mb-3">
-            <form asp-action="ChoiseProduct" asp-controller="Product" method="post">
-               <label class="form-label">Categories</label>
-               <select name="select" class="form-select">
-                   <option value="Present">Present</option>
-                   <option value="Party">Party</option>
-                   <option value="Women">With Women</option>
-               </select>
-                <div style="margin:10px;text-align:center">
-                    <input type="submit" value="Send" class="btn btn-danger" />
-                </div>
-            </form>
+                <form asp-action="ChoiseProduct" asp-controller="Product" method="post">
+                    <label class="form-label">Categories</label>
+                    <select name="select" class="form-select">
+                        <option value="Party">Party</option>
+                        <option value="Women">Women</option>
+
+                    </select>
+                    <div style="margin:10px;text-align:center">
+                        <input type="submit" value="Send" class="btn btn-danger" />
+                    </div>
+                </form>
              </div>
         
         <div>

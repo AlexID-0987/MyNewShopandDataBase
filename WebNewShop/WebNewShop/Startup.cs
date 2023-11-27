@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +28,15 @@ namespace WebNewShop
             services.AddTransient<IOrderRepository, EFOrderRepository>();
             services.AddDbContext<ApplicationsDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<AppIdentityDbContext>(options =>
+            options.UseSqlServer(Configuration["IdentityAdmin:DefaultConnection"]));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>()
+                .AddDefaultTokenProviders();
+
+            
             services.AddMvc();
             services.AddMemoryCache();
             services.AddSession();
@@ -35,11 +45,23 @@ namespace WebNewShop
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            if(env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseStatusCodePages();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+            }
             
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseSession();
+         
+            app.UseAuthentication();
+            
             app.UseMvc(routes =>
             {
                 
@@ -54,7 +76,10 @@ namespace WebNewShop
                     template: "{controller=Product}/{action=Index}/{id?}"
                 );
             });
-            ContextData.Ensure(app); 
+            
+
+            ContextData.Ensure(app);
+            //IdentityData.EnsurePopulated(app);
         }
     }
 }
