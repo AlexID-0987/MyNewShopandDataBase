@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WebNewShop.Migrations.Admin
+namespace WebNewShop.Migrations.AppIdentityDb
 {
-    public partial class ms : Migration
+    public partial class Initial2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

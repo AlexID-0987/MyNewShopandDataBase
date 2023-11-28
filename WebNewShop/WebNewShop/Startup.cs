@@ -26,6 +26,7 @@ namespace WebNewShop
             services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IOrderRepository, EFOrderRepository>();
+
             services.AddDbContext<ApplicationsDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -79,7 +80,7 @@ namespace WebNewShop
             
 
             ContextData.Ensure(app);
-            //IdentityData.EnsurePopulated(app);
+            IdentityData.EnsurePopulated(app);
         }
     }
 }

@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebNewShop.Models;
 
-namespace WebNewShop.Migrations.Admin
+namespace WebNewShop.Migrations.AppIdentityDb
 {
     [DbContext(typeof(AppIdentityDbContext))]
-    [Migration("20231124125223_Create database Admin")]
-    partial class CreatedatabaseAdmin
+    [Migration("20231128201725_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

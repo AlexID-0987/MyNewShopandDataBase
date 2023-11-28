@@ -21,6 +21,8 @@ namespace WebNewShop.Models
             if (user == null)
             {
                 user = new IdentityUser("Admin");
+                user.Email = "admin@.com";
+                user.PhoneNumber = "6464646";
                 await userManager.CreateAsync(user, adminPassword);
             }
 
